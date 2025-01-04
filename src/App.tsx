@@ -36,6 +36,7 @@ function App() {
 				}}>
 				{Array.from({ length: 5 }).map((_, index) => (
 					<button
+						className="ml-7 mt-5"
 						key={index}
 						onClick={() => {
 							api?.scrollTo(index);
