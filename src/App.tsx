@@ -12,80 +12,97 @@ import React from "react";
 function App() {
 	const [api, setApi] = React.useState<CarouselApi>();
 	const [current, setCurrent] = React.useState(0);
-	const [count, setCount] = React.useState(0);
-
 	React.useEffect(() => {
 		if (!api) {
 			return;
 		}
-
-		setCount(api.scrollSnapList().length);
-		setCurrent(api.selectedScrollSnap() + 1);
+		setCurrent(api.selectedScrollSnap());
 
 		api.on("select", () => {
-			setCurrent(api.selectedScrollSnap() + 1);
+			setCurrent(api.selectedScrollSnap());
 		});
 	}, [api]);
-	return (
-		<div className="bg-gray-100 min-h-screen">
-			<Carousel
-				setApi={setApi}
-				opts={{
-					align: "start",
-					loop: true,
-				}}>
-				{Array.from({ length: 5 }).map((_, index) => (
-					<button
-						className="ml-7 mt-5"
-						key={index}
-						onClick={() => {
-							api?.scrollTo(index);
-							setCurrent(index + 1);
-						}}>
-						{index + 1}
-					</button>
-				))}
 
-				<CarouselContent className="w-screen md:min-h-[600px] min-h-[500px] mx-auto text-[#1d1d1d] bg-gray-100 mt-20">
-					{Array.from({ length: 5 }).map((_, index) => (
-						<CarouselItem key={index} className="bg-gray-100 w-full">
-							<div className="md:w-[70%] w-[75%] mx-auto grid md:grid-cols-4 grid-cols-2 gap-2">
-								{index + 1}
-								<button className="block border p-2 border-[#b1b1b1] text-left rounded-[10px] font-bold aspect-square">
-									<p className="text-[#acacac]">vscode</p>
-									<p className="text-sm">新しいウィンドウを開く</p>
-								</button>
-								<button className="block border p-2 border-[#b1b1b1] text-left rounded-[10px] font-bold aspect-square">
-									<p className="text-[#acacac]">vscode</p>
-									<p className="text-sm">ウィンドウの再読み込み</p>
-								</button>
-								<button className="block border p-2 border-[#b1b1b1] text-left rounded-[10px] font-bold aspect-square">
-									<p className="text-[#acacac]">vscode</p>
-									<p className="text-sm">新しいターミナルを開く</p>
-								</button>
-								<button className="block border p-2 border-[#b1b1b1] text-left rounded-[10px] font-bold aspect-square">
-									<p className="text-[#acacac]">slack</p>
-									<p className="text-sm">channel「team-佐藤」を開く</p>
-								</button>
-								<button className="block border p-2 border-[#b1b1b1] text-left rounded-[10px] font-bold aspect-square">
-									<p className="text-[#acacac]">notion</p>
-									<p className="text-sm">新規ページを作成</p>
-								</button>
-								<button className="block border p-2 border-[#b1b1b1] text-left rounded-[10px] font-bold aspect-square">
-									<p className="text-[#acacac]">notion</p>
-									<p className="text-sm">「日報メモ」に子ページを作る</p>
-								</button>
-							</div>
-						</CarouselItem>
-					))}
-				</CarouselContent>
-				<CarouselPrevious className="absolute md:left-10 left-1 text-gray-400 hidden md:flex" />
-				<CarouselNext className="absolute md:right-10 right-1 text-gray-400 hidden md:flex" />
-			</Carousel>
-			<div className="py-2 text-center text-sm text-muted-foreground">
-				Slide {current} of {count}
+	const myStack = [
+		{
+			name: "favorite",
+			data: [
+				{ app: "vscode", text: "新しいウィンドウでターミナルを開く" },
+				{ app: "notion", text: "ページ「自己紹介」に子ページを作成する" },
+				{ app: "slack", text: "channel「日報」の未読メッセージを開く" },
+				{ app: "chrome", text: "勤怠管理のスプレッドシートを開く" },
+				{ app: "github", text: "profileページを開く" },
+				{ app: "voice", text: "音量を上げる" },
+				{ app: "timer", text: "タイマーを開く" },
+			],
+		},
+		{
+			name: "vscode",
+			data: [{ app: "vscode", text: "新しいウィンドウでターミナルを開く" }],
+		},
+		{
+			name: "notion",
+			data: [{ app: "notion", text: "ページ「自己紹介」に子ページを作成する" }],
+		},
+	];
+	return (
+		<>
+			<div className="bg-gray-100 md:w-[calc(100vw-400px)] w-screen py-10 rounded-[10px] mx-auto">
+				<Carousel
+					setApi={setApi}
+					opts={{
+						align: "start",
+						loop: true,
+					}}>
+					<div className="grid md:grid-cols-6 grid-cols-3 gap-2 md:w-[50%] w-[80%] mx-auto">
+						{myStack.map((item, index) => (
+							<button
+								className={
+									current === index
+										? "text-center flex items-center border px-2 py-2 rounded-[10px] opacity-100 border-[#6c6c6c]"
+										: "text-center flex items-center border px-2 py-2 rounded-[10px] opacity-70"
+								}
+								key={index}
+								onClick={() => {
+									api?.scrollTo(index);
+								}}>
+								<img src={`/${item.name}.svg`} className="w-[15px]" />
+								<p className="text-[#3e3e3e] ml-1 md:text-xs text-[10px] font-bold">
+									{item.name}
+								</p>
+							</button>
+						))}
+					</div>
+
+					<CarouselContent className="md:w-[calc(100vw-400px)] w-screen mx-auto text-[#1d1d1d] bg-gray-100 md:mt-5 mt-10">
+						{myStack.map((item, index) => (
+							<CarouselItem key={index} className="bg-gray-100 w-full">
+								<div className="md:w-[70%] w-[75%] mx-auto grid md:grid-cols-4 grid-cols-2 gap-2">
+									{/* {item} */}
+									{item.data.map((child, i) => (
+										<button
+											key={i}
+											className="md:px-3 px-1 block border hover:border-[#1d1d1d] duration-200 text-left border-[#b1b1b1] rounded-[10px] font-bold aspect-square">
+											<div className="">
+												<img
+													src={`/${child.app}.svg`}
+													className="md:w-[50px] w-[30px] mx-auto"
+												/>
+											</div>
+											<p className="md:text-sm text-[10px] md:mt-3 mt-4 w-fit mx-auto">
+												{child.text}
+											</p>
+										</button>
+									))}
+								</div>
+							</CarouselItem>
+						))}
+					</CarouselContent>
+					<CarouselPrevious className="absolute md:left-10 left-1 text-gray-400 hidden md:flex" />
+					<CarouselNext className="absolute md:right-10 right-1 text-gray-400 hidden md:flex" />
+				</Carousel>
 			</div>
-		</div>
+		</>
 	);
 }
 
