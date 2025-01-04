@@ -78,8 +78,8 @@ function App() {
 						</CarouselItem>
 					))}
 				</CarouselContent>
-				<CarouselPrevious className="absolute md:left-10 left-1 text-gray-400" />
-				<CarouselNext className="absolute md:right-10 right-1 text-gray-400" />
+				<CarouselPrevious className="absolute md:left-10 left-1 text-gray-400 hidden md:flex" />
+				<CarouselNext className="absolute md:right-10 right-1 text-gray-400 hidden md:flex" />
 			</Carousel>
 			<div className="py-2 text-center text-sm text-muted-foreground">
 				Slide {current} of {count}
