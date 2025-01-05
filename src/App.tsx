@@ -9,7 +9,9 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel";
 import React from "react";
 
-const ws = new WebSocket(`ws://localhost:8080/connect/test1`);
+const ws = new WebSocket(
+	`ws://geekhaku-vol6-920939054256.asia-northeast1.run.app/`
+);
 function App() {
 	const [api, setApi] = React.useState<CarouselApi>();
 	const [current, setCurrent] = React.useState(0);
@@ -49,13 +51,16 @@ function App() {
 
 	console.log(ws);
 	const postWS = async (value: string) => {
-		const res = await fetch("http://localhost:8080/action", {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body: JSON.stringify({ text: value, name: "test2" }),
-		});
+		const res = await fetch(
+			"https://geekhaku-vol6-920939054256.asia-northeast1.run.app/action",
+			{
+				method: "POST",
+				headers: {
+					"Content-Type": "application/json",
+				},
+				body: JSON.stringify({ text: value, name: "test2" }),
+			}
+		);
 		if (res.ok) {
 			console.log("送信成功");
 		}
