@@ -9,6 +9,7 @@ import {
 import { type CarouselApi } from "@/components/ui/carousel";
 import React from "react";
 
+const ws = new WebSocket(`ws://localhost:8080/connect/test1`);
 function App() {
 	const [api, setApi] = React.useState<CarouselApi>();
 	const [current, setCurrent] = React.useState(0);
@@ -45,6 +46,25 @@ function App() {
 			data: [{ app: "notion", text: "ページ「自己紹介」に子ページを作成する" }],
 		},
 	];
+
+	console.log(ws);
+	const postWS = async (value: string) => {
+		const res = await fetch("http://localhost:8080/action", {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({ text: value, name: "test2" }),
+		});
+		if (res.ok) {
+			console.log("送信成功");
+		}
+		console.log("送信失敗");
+	};
+
+	const handleClickOption = async (value: string) => {
+		await postWS(value);
+	};
 	return (
 		<>
 			<div className="bg-gray-100 md:w-[calc(100vw-400px)] w-screen py-10 rounded-[10px] mx-auto">
@@ -81,6 +101,7 @@ function App() {
 									{/* {item} */}
 									{item.data.map((child, i) => (
 										<button
+											onClick={() => handleClickOption(child.app)}
 											key={i}
 											className="md:px-3 px-1 block border hover:border-[#1d1d1d] duration-200 text-left border-[#b1b1b1] rounded-[10px] font-bold aspect-square">
 											<div className="">
