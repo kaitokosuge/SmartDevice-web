@@ -10,7 +10,7 @@ import { type CarouselApi } from "@/components/ui/carousel";
 import React from "react";
 
 const ws = new WebSocket(
-	`ws://geekhaku-vol6-920939054256.asia-northeast1.run.app/`
+	`wss://geekhaku-vol6-920939054256.asia-northeast1.run.app/`
 );
 function App() {
 	const [api, setApi] = React.useState<CarouselApi>();
