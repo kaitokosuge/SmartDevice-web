@@ -30,13 +30,12 @@ function App() {
 		{
 			name: "favorite",
 			data: [
-				{ app: "vscode", text: "新しいウィンドウでターミナルを開く" },
+				{ app: "vscode", text: "新しいウィンドウを開く" },
+				{ app: "vscode", text: "vscodeを起動する" },
 				{ app: "notion", text: "ページ「自己紹介」に子ページを作成する" },
-				{ app: "slack", text: "channel「日報」の未読メッセージを開く" },
-				{ app: "chrome", text: "勤怠管理のスプレッドシートを開く" },
-				{ app: "github", text: "profileページを開く" },
-				{ app: "voice", text: "音量を上げる" },
-				{ app: "timer", text: "タイマーを開く" },
+				{ app: "notion", text: "ページ「自己紹介」を開く" },
+				{ app: "slack", text: "slackを起動する" },
+				{ app: "slack", text: "channel「日報」を開く" },
 			],
 		},
 		{
@@ -108,14 +107,14 @@ function App() {
 										<button
 											onClick={() => handleClickOption(child.app)}
 											key={i}
-											className="md:px-3 px-1 block border hover:border-[#1d1d1d] duration-200 text-left border-[#b1b1b1] rounded-[10px] font-bold aspect-square">
+											className="md:px-3 px-2 block border hover:border-[#1d1d1d] duration-200 text-left border-[#b1b1b1] rounded-[10px] font-bold aspect-square">
 											<div className="">
 												<img
 													src={`/${child.app}.svg`}
-													className="md:w-[50px] w-[30px] mx-auto"
+													className="md:w-[50px] w-[40px] mx-auto"
 												/>
 											</div>
-											<p className="md:text-sm text-[10px] md:mt-3 mt-4 w-fit mx-auto">
+											<p className="md:text-sm text-[12px] md:mt-3 mt-4 w-fit mx-auto">
 												{child.text}
 											</p>
 										</button>
