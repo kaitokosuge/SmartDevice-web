@@ -30,21 +30,37 @@ function App() {
 		{
 			name: "favorite",
 			data: [
-				{ app: "1", text: "新しいウィンドウを開く" },
-				{ app: "2", text: "vscodeを起動する" },
-				{ app: "3", text: "ページ「自己紹介」に子ページを作成する" },
-				{ app: "4", text: "ページ「自己紹介」を開く" },
-				{ app: "5", text: "slackを起動する" },
-				{ app: "6", text: "channel「日報」を開く" },
+				{ app: "1", text: "新しいウィンドウを開く", name: "vscode" },
+				{ app: "2", text: "vscodeを起動する", name: "vscode" },
+				{
+					app: "3",
+					text: "ページ「自己紹介」に子ページを作成する",
+					name: "notion",
+				},
+				{ app: "4", text: "ページ「自己紹介」を開く", name: "notion" },
+				{ app: "5", text: "slackを起動する", name: "slack" },
+				{ app: "6", text: "channel「日報」を開く", name: "slack" },
 			],
 		},
 		{
 			name: "vscode",
-			data: [{ app: "vscode", text: "新しいウィンドウでターミナルを開く" }],
+			data: [
+				{
+					app: "vscode",
+					text: "新しいウィンドウでターミナルを開く",
+					name: "vscode",
+				},
+			],
 		},
 		{
 			name: "notion",
-			data: [{ app: "notion", text: "ページ「自己紹介」に子ページを作成する" }],
+			data: [
+				{
+					app: "notion",
+					text: "ページ「自己紹介」に子ページを作成する",
+					name: "notion",
+				},
+			],
 		},
 	];
 
@@ -110,7 +126,7 @@ function App() {
 											className="md:px-3 px-2 block border hover:border-[#1d1d1d] duration-200 text-left border-[#b1b1b1] rounded-[10px] font-bold aspect-square">
 											<div className="">
 												<img
-													src={`/${child.app}.svg`}
+													src={`/${child.name}.svg`}
 													className="md:w-[50px] w-[40px] mx-auto"
 												/>
 											</div>
