@@ -30,12 +30,12 @@ function App() {
 		{
 			name: "favorite",
 			data: [
-				{ app: "vscode", text: "新しいウィンドウを開く" },
-				{ app: "vscode", text: "vscodeを起動する" },
-				{ app: "notion", text: "ページ「自己紹介」に子ページを作成する" },
-				{ app: "notion", text: "ページ「自己紹介」を開く" },
-				{ app: "slack", text: "slackを起動する" },
-				{ app: "slack", text: "channel「日報」を開く" },
+				{ app: "1", text: "新しいウィンドウを開く" },
+				{ app: "2", text: "vscodeを起動する" },
+				{ app: "3", text: "ページ「自己紹介」に子ページを作成する" },
+				{ app: "4", text: "ページ「自己紹介」を開く" },
+				{ app: "5", text: "slackを起動する" },
+				{ app: "6", text: "channel「日報」を開く" },
 			],
 		},
 		{
