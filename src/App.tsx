@@ -45,21 +45,19 @@ function App() {
 		{
 			name: "vscode",
 			data: [
-				{
-					app: "vscode",
-					text: "新しいウィンドウでターミナルを開く",
-					name: "vscode",
-				},
+				{ app: "1", text: "新しいウィンドウを開く", name: "vscode" },
+				{ app: "2", text: "vscodeを起動する", name: "vscode" },
 			],
 		},
 		{
 			name: "notion",
 			data: [
 				{
-					app: "notion",
+					app: "3",
 					text: "ページ「自己紹介」に子ページを作成する",
 					name: "notion",
 				},
+				{ app: "4", text: "ページ「自己紹介」を開く", name: "notion" },
 			],
 		},
 	];
